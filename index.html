@@ -2508,32 +2508,73 @@ class EliteVetTechApp {
         });
     }
 
-function setupMobileMenu() {
-  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-  const mobileMenu = document.querySelector('.mobile-menu');
+ // Mobile Menu Management - Enhanced
+    setupMobileMenu() {
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
 
-  if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggleMobileMenu();
+            });
+        }
 
-      // Toggle menu and icon
-      mobileMenu.classList.toggle('hidden');
-      mobileMenuBtn.classList.toggle('active');
-    });
-  }
-
-  // Close menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.navbar')) {
-      mobileMenu.classList.add('hidden');
-      mobileMenuBtn.classList.remove('active');
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.navbar')) {
+                this.closeMobileMenu();
+            }
+        });
     }
-  });
-}
 
-// Call setup on DOM load
-document.addEventListener('DOMContentLoaded', setupMobileMenu);
+    toggleMobileMenu() {
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        
+        if (mobileMenu && mobileMenuBtn) {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.style.display = 'block';
+                mobileMenuBtn.classList.add('active');
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.style.display = 'none';
+                mobileMenuBtn.classList.remove('active');
+            }
+            
+            this.animateHamburgerMenu(mobileMenuBtn, !isHidden);
+        }
+    }
+
+    closeMobileMenu() {
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        
+        if (mobileMenu && mobileMenuBtn) {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.style.display = 'none';
+            mobileMenuBtn.classList.remove('active');
+            this.animateHamburgerMenu(mobileMenuBtn, false);
+        }
+    }
+
+    animateHamburgerMenu(button, isActive) {
+        const spans = button.querySelectorAll('span');
+        spans.forEach((span, index) => {
+            if (isActive) {
+                if (index === 0) span.style.transform = 'rotate(45deg) translate(5px, 5px)';
+                if (index === 1) span.style.opacity = '0';
+                if (index === 2) span.style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                span.style.transform = '';
+                span.style.opacity = '';
+            }
+        });
+    }
 
     // Service Tabs Management - Enhanced
     setupServiceTabs() {
