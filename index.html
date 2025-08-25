@@ -1,0 +1,3057 @@
+<style>
+  :root {
+  /* Primitive Color Tokens */
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+
+  /* RGB versions for opacity control */
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-red-500-rgb: 192, 21, 47;
+  --color-red-400-rgb: 255, 84, 89;
+  --color-orange-500-rgb: 168, 75, 47;
+  --color-orange-400-rgb: 230, 129, 97;
+
+  /* Background color tokens (Light Mode) */
+  --color-bg-1: rgba(59, 130, 246, 0.08); /* Light blue */
+  --color-bg-2: rgba(245, 158, 11, 0.08); /* Light yellow */
+  --color-bg-3: rgba(34, 197, 94, 0.08); /* Light green */
+  --color-bg-4: rgba(239, 68, 68, 0.08); /* Light red */
+  --color-bg-5: rgba(147, 51, 234, 0.08); /* Light purple */
+  --color-bg-6: rgba(249, 115, 22, 0.08); /* Light orange */
+  --color-bg-7: rgba(236, 72, 153, 0.08); /* Light pink */
+  --color-bg-8: rgba(6, 182, 212, 0.08); /* Light cyan */
+
+  /* Semantic Color Tokens (Light Mode) */
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+  /* Common style patterns */
+  --focus-ring: 0 0 0 3px var(--color-focus-ring);
+  --focus-outline: 2px solid var(--color-primary);
+  --status-bg-opacity: 0.15;
+  --status-border-opacity: 0.25;
+  --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
+  /* RGB versions for opacity control */
+  --color-success-rgb: 33, 128, 141;
+  --color-error-rgb: 192, 21, 47;
+  --color-warning-rgb: 168, 75, 47;
+  --color-info-rgb: 98, 108, 113;
+
+  /* Typography */
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --letter-spacing-tight: -0.01em;
+
+  /* Spacing */
+  --space-0: 0;
+  --space-1: 1px;
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-base: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+    0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+}
+
+/* Dark mode colors */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* RGB versions for opacity control (Dark Mode) */
+    --color-gray-400-rgb: 119, 124, 124;
+    --color-teal-300-rgb: 50, 184, 198;
+    --color-gray-300-rgb: 167, 169, 169;
+    --color-gray-200-rgb: 245, 245, 245;
+
+    /* Background color tokens (Dark Mode) */
+    --color-bg-1: rgba(29, 78, 216, 0.15); /* Dark blue */
+    --color-bg-2: rgba(180, 83, 9, 0.15); /* Dark yellow */
+    --color-bg-3: rgba(21, 128, 61, 0.15); /* Dark green */
+    --color-bg-4: rgba(185, 28, 28, 0.15); /* Dark red */
+    --color-bg-5: rgba(107, 33, 168, 0.15); /* Dark purple */
+    --color-bg-6: rgba(194, 65, 12, 0.15); /* Dark orange */
+    --color-bg-7: rgba(190, 24, 93, 0.15); /* Dark pink */
+    --color-bg-8: rgba(8, 145, 178, 0.15); /* Dark cyan */
+    
+    /* Semantic Color Tokens (Dark Mode) */
+    --color-background: var(--color-charcoal-700);
+    --color-surface: var(--color-charcoal-800);
+    --color-text: var(--color-gray-200);
+    --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+    --color-primary: var(--color-teal-300);
+    --color-primary-hover: var(--color-teal-400);
+    --color-primary-active: var(--color-teal-800);
+    --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+    --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+    --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-error: var(--color-red-400);
+    --color-success: var(--color-teal-300);
+    --color-warning: var(--color-orange-400);
+    --color-info: var(--color-gray-300);
+    --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+    --color-btn-primary-text: var(--color-slate-900);
+    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+    --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    --button-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+
+    /* Common style patterns - updated for dark mode */
+    --focus-ring: 0 0 0 3px var(--color-focus-ring);
+    --focus-outline: 2px solid var(--color-primary);
+    --status-bg-opacity: 0.15;
+    --status-border-opacity: 0.25;
+    --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
+    /* RGB versions for dark mode */
+    --color-success-rgb: var(--color-teal-300-rgb);
+    --color-error-rgb: var(--color-red-400-rgb);
+    --color-warning-rgb: var(--color-orange-400-rgb);
+    --color-info-rgb: var(--color-gray-300-rgb);
+  }
+}
+
+/* Data attribute for manual theme switching */
+[data-color-scheme="dark"] {
+  /* RGB versions for opacity control (dark mode) */
+  --color-gray-400-rgb: 119, 124, 124;
+  --color-teal-300-rgb: 50, 184, 198;
+  --color-gray-300-rgb: 167, 169, 169;
+  --color-gray-200-rgb: 245, 245, 245;
+
+  /* Colorful background palette - Dark Mode */
+  --color-bg-1: rgba(29, 78, 216, 0.15); /* Dark blue */
+  --color-bg-2: rgba(180, 83, 9, 0.15); /* Dark yellow */
+  --color-bg-3: rgba(21, 128, 61, 0.15); /* Dark green */
+  --color-bg-4: rgba(185, 28, 28, 0.15); /* Dark red */
+  --color-bg-5: rgba(107, 33, 168, 0.15); /* Dark purple */
+  --color-bg-6: rgba(194, 65, 12, 0.15); /* Dark orange */
+  --color-bg-7: rgba(190, 24, 93, 0.15); /* Dark pink */
+  --color-bg-8: rgba(8, 145, 178, 0.15); /* Dark cyan */
+  
+  /* Semantic Color Tokens (Dark Mode) */
+  --color-background: var(--color-charcoal-700);
+  --color-surface: var(--color-charcoal-800);
+  --color-text: var(--color-gray-200);
+  --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+  --color-primary: var(--color-teal-300);
+  --color-primary-hover: var(--color-teal-400);
+  --color-primary-active: var(--color-teal-800);
+  --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+  --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+  --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+  --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+  --color-error: var(--color-red-400);
+  --color-success: var(--color-teal-300);
+  --color-warning: var(--color-orange-400);
+  --color-info: var(--color-gray-300);
+  --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+  --color-btn-primary-text: var(--color-slate-900);
+  --color-card-border: rgba(var(--color-gray-400-rgb), 0.15);
+  --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  --color-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
+  --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+
+  /* Common style patterns - updated for dark mode */
+  --focus-ring: 0 0 0 3px var(--color-focus-ring);
+  --focus-outline: 2px solid var(--color-primary);
+  --status-bg-opacity: 0.15;
+  --status-border-opacity: 0.25;
+  --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
+  /* RGB versions for dark mode */
+  --color-success-rgb: var(--color-teal-300-rgb);
+  --color-error-rgb: var(--color-red-400-rgb);
+  --color-warning-rgb: var(--color-orange-400-rgb);
+  --color-info-rgb: var(--color-gray-300-rgb);
+}
+
+[data-color-scheme="light"] {
+  /* RGB versions for opacity control (light mode) */
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  
+  /* Semantic Color Tokens (Light Mode) */
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+
+  /* RGB versions for light mode */
+  --color-success-rgb: var(--color-teal-500-rgb);
+  --color-error-rgb: var(--color-red-500-rgb);
+  --color-warning-rgb: var(--color-orange-500-rgb);
+  --color-info-rgb: var(--color-slate-500-rgb);
+}
+
+/* Base styles */
+html {
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+h1 {
+  font-size: var(--font-size-4xl);
+}
+h2 {
+  font-size: var(--font-size-3xl);
+}
+h3 {
+  font-size: var(--font-size-2xl);
+}
+h4 {
+  font-size: var(--font-size-xl);
+}
+h5 {
+  font-size: var(--font-size-lg);
+}
+h6 {
+  font-size: var(--font-size-md);
+}
+
+p {
+  margin: 0 0 var(--space-16) 0;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+code,
+pre {
+  font-family: var(--font-family-mono);
+  font-size: calc(var(--font-size-base) * 0.95);
+  background-color: var(--color-secondary);
+  border-radius: var(--radius-sm);
+}
+
+code {
+  padding: var(--space-1) var(--space-4);
+}
+
+pre {
+  padding: var(--space-16);
+  margin: var(--space-16) 0;
+  overflow: auto;
+  border: 1px solid var(--color-border);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-16);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-standard);
+  border: none;
+  text-decoration: none;
+  position: relative;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn--primary:active {
+  background: var(--color-primary-active);
+}
+
+.btn--secondary {
+  background: var(--color-secondary);
+  color: var(--color-text);
+}
+
+.btn--secondary:hover {
+  background: var(--color-secondary-hover);
+}
+
+.btn--secondary:active {
+  background: var(--color-secondary-active);
+}
+
+.btn--outline {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.btn--outline:hover {
+  background: var(--color-secondary);
+}
+
+.btn--sm {
+  padding: var(--space-4) var(--space-12);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-sm);
+}
+
+.btn--lg {
+  padding: var(--space-10) var(--space-20);
+  font-size: var(--font-size-lg);
+  border-radius: var(--radius-md);
+}
+
+.btn--full-width {
+  width: 100%;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Form elements */
+.form-control {
+  display: block;
+  width: 100%;
+  padding: var(--space-8) var(--space-12);
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  transition: border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+textarea.form-control {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+}
+
+select.form-control {
+  padding: var(--space-8) var(--space-12);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: var(--select-caret-light);
+  background-repeat: no-repeat;
+  background-position: right var(--space-12) center;
+  background-size: 16px;
+  padding-right: var(--space-32);
+}
+
+/* Add a dark mode specific caret */
+@media (prefers-color-scheme: dark) {
+  select.form-control {
+    background-image: var(--select-caret-dark);
+  }
+}
+
+/* Also handle data-color-scheme */
+[data-color-scheme="dark"] select.form-control {
+  background-image: var(--select-caret-dark);
+}
+
+[data-color-scheme="light"] select.form-control {
+  background-image: var(--select-caret-light);
+}
+
+.form-control:focus {
+  border-color: var(--color-primary);
+  outline: var(--focus-outline);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--space-8);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+}
+
+.form-group {
+  margin-bottom: var(--space-16);
+}
+
+/* Card component */
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: box-shadow var(--duration-normal) var(--ease-standard);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card__body {
+  padding: var(--space-16);
+}
+
+.card__header,
+.card__footer {
+  padding: var(--space-16);
+  border-bottom: 1px solid var(--color-card-border-inner);
+}
+
+/* Status indicators - simplified with CSS variables */
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-6) var(--space-12);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+}
+
+.status--success {
+  background-color: rgba(
+    var(--color-success-rgb, 33, 128, 141),
+    var(--status-bg-opacity)
+  );
+  color: var(--color-success);
+  border: 1px solid
+    rgba(var(--color-success-rgb, 33, 128, 141), var(--status-border-opacity));
+}
+
+.status--error {
+  background-color: rgba(
+    var(--color-error-rgb, 192, 21, 47),
+    var(--status-bg-opacity)
+  );
+  color: var(--color-error);
+  border: 1px solid
+    rgba(var(--color-error-rgb, 192, 21, 47), var(--status-border-opacity));
+}
+
+.status--warning {
+  background-color: rgba(
+    var(--color-warning-rgb, 168, 75, 47),
+    var(--status-bg-opacity)
+  );
+  color: var(--color-warning);
+  border: 1px solid
+    rgba(var(--color-warning-rgb, 168, 75, 47), var(--status-border-opacity));
+}
+
+.status--info {
+  background-color: rgba(
+    var(--color-info-rgb, 98, 108, 113),
+    var(--status-bg-opacity)
+  );
+  color: var(--color-info);
+  border: 1px solid
+    rgba(var(--color-info-rgb, 98, 108, 113), var(--status-border-opacity));
+}
+
+/* Container layout */
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--space-16);
+  padding-left: var(--space-16);
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: var(--container-sm);
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: var(--container-md);
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    max-width: var(--container-lg);
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    max-width: var(--container-xl);
+  }
+}
+
+/* Utility classes */
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.gap-4 {
+  gap: var(--space-4);
+}
+.gap-8 {
+  gap: var(--space-8);
+}
+.gap-16 {
+  gap: var(--space-16);
+}
+
+.m-0 {
+  margin: 0;
+}
+.mt-8 {
+  margin-top: var(--space-8);
+}
+.mb-8 {
+  margin-bottom: var(--space-8);
+}
+.mx-8 {
+  margin-left: var(--space-8);
+  margin-right: var(--space-8);
+}
+.my-8 {
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-8);
+}
+
+.p-0 {
+  padding: 0;
+}
+.py-8 {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+.px-8 {
+  padding-left: var(--space-8);
+  padding-right: var(--space-8);
+}
+.py-16 {
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+}
+.px-16 {
+  padding-left: var(--space-16);
+  padding-right: var(--space-16);
+}
+
+.block {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: 2px;
+}
+
+/* Dark mode specifics */
+[data-color-scheme="dark"] .btn--outline {
+  border: 1px solid var(--color-border-secondary);
+}
+
+@font-face {
+  font-family: 'FKGroteskNeue';
+  src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2')
+    format('woff2');
+}
+
+/* END PERPLEXITY DESIGN SYSTEM */
+/* Additional styles for EliteVet Tech website */
+
+/* Navigation */
+.navbar {
+  position: sticky;
+  top: 0;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-16) 0;
+}
+
+.nav-brand h2 {
+  color: var(--color-primary);
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-32);
+}
+
+.nav-link {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--duration-fast) var(--ease-standard);
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-primary);
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  padding: var(--space-8);
+  min-width: 150px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--duration-normal) var(--ease-standard);
+  box-shadow: var(--shadow-lg);
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: var(--space-8) var(--space-12);
+  color: var(--color-text);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+
+.dropdown-menu a:hover {
+  background: var(--color-secondary);
+}
+
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-4);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-8);
+}
+
+.mobile-menu-btn span {
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.mobile-menu {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-16) 0;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.mobile-nav-link {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-12) var(--space-16);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.mobile-nav-link:hover {
+  color: var(--color-primary);
+}
+
+/* Page Management */
+.page {
+  display: none;
+  min-height: 100vh;
+}
+
+.page.active {
+  display: block;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: var(--space-32);
+  font-size: var(--font-size-4xl);
+  color: var(--color-text);
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: var(--space-32);
+  font-size: var(--font-size-3xl);
+  color: var(--color-text);
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--color-text);
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--color-bg-1), var(--color-bg-3));
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.hero-content {
+  /* max-width: 800px; */
+  z-index: 1;
+}
+
+.hero-title {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--space-24);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-32);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--space-16);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Features Section */
+.features {
+  padding: var(--space-32) 0;
+  background: var(--color-bg-2);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-24);
+}
+
+.feature-card {
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  border: 1px solid var(--color-card-border);
+  transition: transform var(--duration-normal) var(--ease-standard);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-16);
+}
+
+.feature-card h3 {
+  margin-bottom: var(--space-12);
+  color: var(--color-text);
+}
+
+.feature-card p {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Industries Section */
+.industries-section {
+  padding: var(--space-32) 0;
+}
+
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-24);
+}
+
+.industry-card {
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.industry-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.industry-icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-16);
+}
+
+.industry-card h3 {
+  margin-bottom: var(--space-12);
+  color: var(--color-text);
+}
+
+.industry-card p {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Why Choose Us Section */
+.why-choose-us {
+  padding: var(--space-32) 0;
+  background: var(--color-bg-5);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-24);
+}
+
+.stat-card {
+  text-align: center;
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+}
+
+.stat-card h3 {
+  font-size: var(--font-size-4xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-8);
+}
+
+.stat-card p {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Service Tabs */
+.service-tabs {
+  display: flex;
+  gap: var(--space-16);
+  margin-bottom: var(--space-32);
+  justify-content: center;
+}
+
+.tab-btn {
+  padding: var(--space-12) var(--space-24);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+  font-weight: var(--font-weight-medium);
+}
+
+.tab-btn.active {
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  border-color: var(--color-primary);
+}
+
+.tab-btn:hover:not(.active) {
+  background: var(--color-secondary);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Technology Grid */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: var(--space-16);
+  margin-bottom: var(--space-32);
+}
+
+.tech-card {
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  padding: var(--space-16);
+  border-radius: var(--radius-base);
+  text-align: center;
+  font-weight: var(--font-weight-semibold);
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.tech-card:hover {
+  transform: scale(1.05);
+}
+
+/* Process Grid */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-24);
+}
+
+.process-card {
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+}
+
+.process-card h3 {
+  margin-bottom: var(--space-12);
+  color: var(--color-text);
+}
+
+.process-card p {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Locations Grid */
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-24);
+}
+
+.location-card {
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.location-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.location-card h3 {
+  margin-bottom: var(--space-16);
+  color: var(--color-text);
+  font-size: var(--font-size-xl);
+}
+
+.location-card p {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Industries Detail */
+.industries-detail {
+  display: grid;
+  gap: var(--space-32);
+}
+
+.industry-detail-card {
+  background: var(--color-surface);
+  padding: var(--space-32);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+}
+
+.industry-detail-card h2 {
+  margin-bottom: var(--space-16);
+  color: var(--color-text);
+}
+
+.industry-detail-card p {
+  margin-bottom: var(--space-16);
+  color: var(--color-text-secondary);
+}
+
+.industry-detail-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.industry-detail-card li {
+  padding: var(--space-8) 0;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-card-border-inner);
+}
+
+.industry-detail-card li:before {
+  content: "✓ ";
+  color: var(--color-success);
+  font-weight: var(--font-weight-bold);
+  margin-right: var(--space-8);
+}
+
+/* Job Filters */
+.job-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-16);
+  margin-bottom: var(--space-32);
+  padding: var(--space-24);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.filter-group label {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+/* Job Listings */
+.job-listings {
+  display: grid;
+  gap: var(--space-16);
+  margin-bottom: var(--space-32);
+}
+
+.job-card {
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.job-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.job-card h3 {
+  margin: 0 0 var(--space-8) 0;
+  color: var(--color-text);
+}
+
+.job-details {
+  display: flex;
+  gap: var(--space-16);
+  flex-wrap: wrap;
+}
+
+.job-details span {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.job-card.hidden {
+  display: none;
+}
+
+/* Benefits Section */
+.benefits-section {
+  margin-top: var(--space-32);
+  padding-top: var(--space-32);
+  border-top: 1px solid var(--color-border);
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-24);
+}
+
+.benefit-card {
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  text-align: center;
+}
+
+.benefit-card h3 {
+  margin-bottom: var(--space-12);
+  color: var(--color-text);
+}
+
+.benefit-card p {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Testimonials */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-24);
+}
+
+.testimonial-card {
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  margin-bottom: var(--space-16);
+}
+
+.testimonial-avatar {
+  width: 48px;
+  height: 48px;
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+}
+
+.testimonial-info h3 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--font-size-lg);
+}
+
+.testimonial-info p {
+  margin: var(--space-2) 0 0 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.testimonial-rating {
+  margin-left: auto;
+  color: #fbbf24;
+}
+
+.testimonial-text {
+  color: var(--color-text);
+  font-style: italic;
+  margin: 0;
+  line-height: var(--line-height-normal);
+}
+
+/* Partners */
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--space-16);
+  margin-bottom: var(--space-32);
+}
+
+.partner-card {
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  text-align: center;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.partner-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.partnership-benefits {
+  margin-top: var(--space-32);
+  padding-top: var(--space-32);
+  border-top: 1px solid var(--color-border);
+}
+
+.benefit-item {
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+}
+
+.benefit-item h3 {
+  margin-bottom: var(--space-12);
+  color: var(--color-text);
+}
+
+.benefit-item p {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.cta-section {
+  text-align: center;
+  margin-top: var(--space-32);
+  padding: var(--space-32);
+  background: var(--color-bg-1);
+  border-radius: var(--radius-lg);
+}
+
+.cta-section h3 {
+  margin-bottom: var(--space-8);
+  color: var(--color-text);
+}
+
+.cta-section p {
+  margin-bottom: var(--space-24);
+  color: var(--color-text-secondary);
+}
+
+/* Insights */
+.insights-categories {
+  display: flex;
+  gap: var(--space-16);
+  margin-bottom: var(--space-32);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.category-btn {
+  padding: var(--space-8) var(--space-16);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.category-btn.active {
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  border-color: var(--color-primary);
+}
+
+.category-btn:hover:not(.active) {
+  background: var(--color-secondary);
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-24);
+}
+
+.insight-card {
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.insight-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.insight-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-16);
+}
+
+.insight-category {
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.insight-date {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.insight-card h2 {
+  margin-bottom: var(--space-16);
+  color: var(--color-text);
+  font-size: var(--font-size-xl);
+}
+
+.insight-card p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-16);
+}
+
+.insight-card.hidden {
+  display: none;
+}
+
+/* Contact */
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-32);
+}
+
+.contact-info h2 {
+  margin-bottom: var(--space-16);
+  color: var(--color-text);
+}
+
+.contact-info p {
+  margin-bottom: var(--space-24);
+  color: var(--color-text-secondary);
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.contact-item h3 {
+  margin-bottom: var(--space-8);
+  color: var(--color-text);
+}
+
+.contact-item p {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.contact-form {
+  background: var(--color-surface);
+  padding: var(--space-32);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+}
+
+.contact-form h2 {
+  margin-bottom: var(--space-24);
+  color: var(--color-text);
+}
+
+/* Footer */
+.footer {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-32) 0 var(--space-16) 0;
+  margin-top: var(--space-32);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-24);
+  margin-bottom: var(--space-24);
+}
+
+.footer-section h3,
+.footer-section h4 {
+  margin-bottom: var(--space-16);
+  color: var(--color-text);
+}
+
+.footer-section p {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li {
+  margin-bottom: var(--space-8);
+}
+
+.footer-section a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.footer-section a:hover {
+  color: var(--color-primary);
+}
+
+.social-links {
+  display: flex;
+  gap: var(--space-16);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: var(--space-16);
+  border-top: 1px solid var(--color-border);
+}
+
+.footer-bottom p {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .hero-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .hero-subtitle {
+    font-size: var(--font-size-lg);
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+
+  .job-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-16);
+  }
+
+  .job-details {
+    width: 100%;
+  }
+
+  .service-tabs {
+    flex-direction: column;
+  }
+  
+  .insights-categories {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .features-grid,
+  .industries-grid,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .job-filters {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Animation classes for JavaScript */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.slide-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.slide-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.btn.loading {
+  position: relative;
+}
+
+.btn.loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10/dist/framer-motion.js"></script>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <h2>EliteVet Tech</h2>
+                </div>
+                <div class="nav-links desktop-nav">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <div class="nav-dropdown">
+                        <a href="#services" class="nav-link">Services</a>
+                        <div class="dropdown-menu">
+                            <a href="#services" data-tab="staffing">Staffing</a>
+                            <a href="#services" data-tab="operations">Operations</a>
+                        </div>
+                    </div>
+                    <a href="#industries" class="nav-link">Industries</a>
+                    <a href="#careers" class="nav-link">Careers</a>
+                    <a href="#testimonials" class="nav-link">Testimonials</a>
+                    <a href="#partners" class="nav-link">Partners</a>
+                    <a href="#insights" class="nav-link">Industry Insights</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                <button class="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden">
+            <div class="mobile-nav-links">
+                <a href="#home" class="mobile-nav-link">Home</a>
+                <a href="#services" class="mobile-nav-link">Services</a>
+                <a href="#industries" class="mobile-nav-link">Industries</a>
+                <a href="#careers" class="mobile-nav-link">Careers</a>
+                <a href="#testimonials" class="mobile-nav-link">Testimonials</a>
+                <a href="#partners" class="mobile-nav-link">Partners</a>
+                <a href="#insights" class="mobile-nav-link">Industry Insights</a>
+                <a href="#contact" class="mobile-nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <main id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-background"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Empowering Businesses with Exceptional Talent</h1>
+                    <p class="hero-subtitle">EliteVet Tech is Veteran-led. Excellence-driven IT Staffing and consulting solutions for every mission</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn--primary btn--lg">Get Started</button>
+                        <button class="btn btn--outline btn--lg">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features -->
+        <section class="features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Immediate Support</h3>
+                        <p>Quick response times for urgent staffing needs</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <h3>End to End IT Services</h3>
+                        <p>Complete staffing and consulting solutions</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌍</div>
+                        <h3>Worldwide Operations</h3>
+                        <p>Global presence across 5 key markets</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Certified Technology Experts</h3>
+                        <p>Highly qualified professionals with proven expertise</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industries We Serve -->
+        <section class="industries-section">
+            <div class="container">
+                <h2 class="section-title">Industries We Serve</h2>
+                <div class="industries-grid">
+                    <div class="industry-card">
+                        <div class="industry-icon">⚡</div>
+                        <h3>Utilities</h3>
+                        <p>Smart grid solutions, energy management systems, and IoT implementations</p>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon">🚗</div>
+                        <h3>Automobile</h3>
+                        <p>Connected vehicle technologies, manufacturing automation, and digital transformation</p>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon">🏭</div>
+                        <h3>Manufacturing</h3>
+                        <p>Supply chain optimization, automation systems, and quality management solutions</p>
+                    </div>
+                    <div class="industry-card">
+                        <div class="industry-icon">💼</div>
+                        <h3>Services</h3>
+                        <p>Digital transformation, cloud migration, and technology consulting services</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="why-choose-us">
+            <div class="container">
+                <h2 class="section-title">Why Choose EliteVet Tech</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>500+</h3>
+                        <p>Successfully Placed Professionals</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>5</h3>
+                        <p>Global Locations</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>98%</h3>
+                        <p>Client Satisfaction Rate</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>24/7</h3>
+                        <p>Support Available</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Services Page -->
+    <main id="services" class="page">
+        <div class="container">
+            <h1 class="page-title">Our Services</h1>
+            
+            <!-- Service Tabs -->
+            <div class="service-tabs">
+                <button class="tab-btn active" data-tab="staffing">Staffing</button>
+                <button class="tab-btn" data-tab="operations">Operations</button>
+            </div>
+
+            <!-- Staffing Tab -->
+            <div id="staffing-tab" class="tab-content active">
+                <section class="staffing-section">
+                    <h2>Technology Staffing</h2>
+                    <div class="tech-grid">
+                        <div class="tech-card">AWS</div>
+                        <div class="tech-card">GCP</div>
+                        <div class="tech-card">Azure</div>
+                        <div class="tech-card">Microsoft Suite</div>
+                        <div class="tech-card">GIS</div>
+                        <div class="tech-card">Palantir</div>
+                        <div class="tech-card">Salesforce</div>
+                        <div class="tech-card">SAP</div>
+                    </div>
+                    
+                    <h2>Process Expertise</h2>
+                    <div class="process-grid">
+                        <div class="process-card">
+                            <h3>Project Managers & Program Managers</h3>
+                            <p>Experienced leaders to drive your initiatives</p>
+                        </div>
+                        <div class="process-card">
+                            <h3>Functional Consultants</h3>
+                            <p>Domain experts in various business functions</p>
+                        </div>
+                        <div class="process-card">
+                            <h3>Strategic Consultants</h3>
+                            <p>High-level strategic guidance and planning</p>
+                        </div>
+                        <div class="process-card">
+                            <h3>Business Analysts & Scrum Masters</h3>
+                            <p>Agile methodology experts and requirements specialists</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Operations Tab -->
+            <div id="operations-tab" class="tab-content">
+                <section class="operations-section">
+                    <h2>Global Operations</h2>
+                    <div class="locations-grid">
+                        <div class="location-card">
+                            <h3>🇺🇸 United States</h3>
+                            <p>Headquarters with comprehensive staffing and consulting services</p>
+                        </div>
+                        <div class="location-card">
+                            <h3>🇮🇳 India</h3>
+                            <p>Development center with technical expertise and cost-effective solutions</p>
+                        </div>
+                        <div class="location-card">
+                            <h3>🇦🇪 Dubai</h3>
+                            <p>Middle East hub for regional client support and operations</p>
+                        </div>
+                        <div class="location-card">
+                            <h3>🇸🇬 Singapore</h3>
+                            <p>Asia-Pacific center for regional expansion and partnerships</p>
+                        </div>
+                        <div class="location-card">
+                            <h3>🇵🇭 Philippines</h3>
+                            <p>Operations center providing 24/7 support and specialized services</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Industries Page -->
+    <main id="industries" class="page">
+        <div class="container">
+            <h1 class="page-title">Industries</h1>
+            <div class="industries-detail">
+                <div class="industry-detail-card">
+                    <h2>⚡ Utilities</h2>
+                    <p>Smart grid solutions, energy management systems, and IoT implementations for utility companies. We help modernize infrastructure and improve operational efficiency.</p>
+                    <ul>
+                        <li>Smart Grid Implementation</li>
+                        <li>Energy Management Systems</li>
+                        <li>IoT Solutions for Utilities</li>
+                        <li>Grid Modernization</li>
+                    </ul>
+                </div>
+                <div class="industry-detail-card">
+                    <h2>🚗 Automobile</h2>
+                    <p>Connected vehicle technologies, manufacturing automation, and digital transformation solutions for the automotive industry.</p>
+                    <ul>
+                        <li>Connected Vehicle Solutions</li>
+                        <li>Manufacturing Automation</li>
+                        <li>Digital Transformation</li>
+                        <li>Supply Chain Optimization</li>
+                    </ul>
+                </div>
+                <div class="industry-detail-card">
+                    <h2>🏭 Manufacturing</h2>
+                    <p>Supply chain optimization, automation systems, and quality management solutions for manufacturing companies.</p>
+                    <ul>
+                        <li>Supply Chain Management</li>
+                        <li>Automation Systems</li>
+                        <li>Quality Management</li>
+                        <li>Production Optimization</li>
+                    </ul>
+                </div>
+                <div class="industry-detail-card">
+                    <h2>💼 Services</h2>
+                    <p>Digital transformation, cloud migration, and technology consulting services for service-based organizations.</p>
+                    <ul>
+                        <li>Digital Transformation</li>
+                        <li>Cloud Migration</li>
+                        <li>Technology Consulting</li>
+                        <li>Process Optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Careers Page -->
+    <main id="careers" class="page">
+        <div class="container">
+            <h1 class="page-title">Careers</h1>
+            
+            <!-- Job Search Filters -->
+            <div class="job-filters">
+                <div class="filter-group">
+                    <label for="location-filter">Location:</label>
+                    <select id="location-filter" class="form-control">
+                        <option value="">All Locations</option>
+                        <option value="US">United States</option>
+                        <option value="India">India</option>
+                        <option value="Dubai">Dubai</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Philippines">Philippines</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="technology-filter">Technology:</label>
+                    <select id="technology-filter" class="form-control">
+                        <option value="">All Technologies</option>
+                        <option value="AWS">AWS</option>
+                        <option value="Azure">Azure</option>
+                        <option value="GCP">GCP</option>
+                        <option value="Salesforce">Salesforce</option>
+                        <option value="SAP">SAP</option>
+                        <option value="GIS">GIS</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="type-filter">Job Type:</label>
+                    <select id="type-filter" class="form-control">
+                        <option value="">All Types</option>
+                        <option value="Full-time">Full-time</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Part-time">Part-time</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Job Listings -->
+            <div class="job-listings">
+                <div class="job-card" data-location="US" data-technology="AWS" data-type="Full-time">
+                    <h3>Senior AWS Cloud Architect</h3>
+                    <div class="job-details">
+                        <span class="job-location">📍 United States</span>
+                        <span class="job-tech">☁️ AWS</span>
+                        <span class="job-type">💼 Full-time</span>
+                        <span class="job-experience">🎯 5-8 years</span>
+                    </div>
+                    <button class="btn btn--primary">Apply Now</button>
+                </div>
+                
+                <div class="job-card" data-location="India" data-technology="SAP" data-type="Contract">
+                    <h3>SAP Functional Consultant</h3>
+                    <div class="job-details">
+                        <span class="job-location">📍 India</span>
+                        <span class="job-tech">💻 SAP</span>
+                        <span class="job-type">📝 Contract</span>
+                        <span class="job-experience">🎯 3-5 years</span>
+                    </div>
+                    <button class="btn btn--primary">Apply Now</button>
+                </div>
+                
+                <div class="job-card" data-location="Singapore" data-technology="Salesforce" data-type="Full-time">
+                    <h3>Salesforce Developer</h3>
+                    <div class="job-details">
+                        <span class="job-location">📍 Singapore</span>
+                        <span class="job-tech">⚡ Salesforce</span>
+                        <span class="job-type">💼 Full-time</span>
+                        <span class="job-experience">🎯 2-4 years</span>
+                    </div>
+                    <button class="btn btn--primary">Apply Now</button>
+                </div>
+                
+                <div class="job-card" data-location="Dubai" data-technology="Azure" data-type="Contract">
+                    <h3>Azure DevOps Engineer</h3>
+                    <div class="job-details">
+                        <span class="job-location">📍 Dubai</span>
+                        <span class="job-tech">☁️ Azure</span>
+                        <span class="job-type">📝 Contract</span>
+                        <span class="job-experience">🎯 4-6 years</span>
+                    </div>
+                    <button class="btn btn--primary">Apply Now</button>
+                </div>
+                
+                <div class="job-card" data-location="Philippines" data-technology="GIS" data-type="Full-time">
+                    <h3>Project Manager - GIS</h3>
+                    <div class="job-details">
+                        <span class="job-location">📍 Philippines</span>
+                        <span class="job-tech">🗺️ GIS</span>
+                        <span class="job-type">💼 Full-time</span>
+                        <span class="job-experience">🎯 6-10 years</span>
+                    </div>
+                    <button class="btn btn--primary">Apply Now</button>
+                </div>
+            </div>
+
+            <!-- Benefits Section -->
+            <section class="benefits-section">
+                <h2>Why Work With Us</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <h3>💰 Competitive Compensation</h3>
+                        <p>Market-leading salaries and comprehensive benefits</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>🌍 Global Opportunities</h3>
+                        <p>Work across our 5 global locations</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>📚 Professional Development</h3>
+                        <p>Continuous learning and certification programs</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>🤝 Veteran Values</h3>
+                        <p>Honor, integrity, and excellence in everything we do</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Testimonials Page -->
+    <main id="testimonials" class="page">
+        <div class="container">
+            <h1 class="page-title">Client Testimonials</h1>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">SJ</div>
+                        <div class="testimonial-info">
+                            <h3>Sarah Johnson</h3>
+                            <p>CTO, Tech Solutions Inc</p>
+                        </div>
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <p class="testimonial-text">"EliteVet Tech provided exceptional AWS architects who transformed our cloud infrastructure. Their veteran-led approach brings discipline and excellence to every project."</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">MC</div>
+                        <div class="testimonial-info">
+                            <h3>Michael Chen</h3>
+                            <p>IT Director, Global Manufacturing Corp</p>
+                        </div>
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <p class="testimonial-text">"The SAP consultants from EliteVet Tech streamlined our entire manufacturing process. Their expertise and professionalism exceeded our expectations."</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">ER</div>
+                        <div class="testimonial-info">
+                            <h3>Emily Rodriguez</h3>
+                            <p>Operations Manager, Energy Utilities Ltd</p>
+                        </div>
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <p class="testimonial-text">"Their GIS specialists helped us modernize our utility management systems. EliteVet Tech consistently delivers top-tier talent."</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Partners Page -->
+    <main id="partners" class="page">
+        <div class="container">
+            <h1 class="page-title">Technology Partners</h1>
+            
+            <section class="partners-section">
+                <div class="partners-grid">
+                    <div class="partner-card">AWS</div>
+                    <div class="partner-card">Microsoft</div>
+                    <div class="partner-card">Google Cloud</div>
+                    <div class="partner-card">Salesforce</div>
+                    <div class="partner-card">SAP</div>
+                    <div class="partner-card">Palantir</div>
+                    <div class="partner-card">Oracle</div>
+                    <div class="partner-card">VMware</div>
+                </div>
+            </section>
+
+            <section class="partnership-benefits">
+                <h2>Partnership Benefits</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <h3>🤝 Strategic Collaboration</h3>
+                        <p>Work together on complex client solutions</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>📈 Market Expansion</h3>
+                        <p>Access to our global client network</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>🎯 Certified Expertise</h3>
+                        <p>Our professionals maintain latest certifications</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>🌟 Joint Marketing</h3>
+                        <p>Co-marketing opportunities and events</p>
+                    </div>
+                </div>
+                <div class="cta-section">
+                    <h3>Become a Partner</h3>
+                    <p>Join our network of technology partners and expand your reach</p>
+                    <button class="btn btn--primary btn--lg">Partner with Us</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Industry Insights Page -->
+    <main id="insights" class="page">
+        <div class="container">
+            <h1 class="page-title">Industry Insights</h1>
+            
+            <div class="insights-categories">
+                <button class="category-btn active" data-category="all">All Articles</button>
+                <button class="category-btn" data-category="staffing">Staffing</button>
+                <button class="category-btn" data-category="consulting">IT Consulting</button>
+                <button class="category-btn" data-category="trends">Technology Trends</button>
+            </div>
+
+            <div class="insights-grid">
+                <article class="insight-card" data-category="staffing">
+                    <div class="insight-meta">
+                        <span class="insight-category">Staffing</span>
+                        <span class="insight-date">Aug 2024</span>
+                    </div>
+                    <h2>The Future of Cloud Staffing: Trends for 2024</h2>
+                    <p>Explore emerging trends in cloud technology staffing and how companies can attract top talent in an increasingly competitive market.</p>
+                    <button class="btn btn--outline">Read More</button>
+                </article>
+                
+                <article class="insight-card" data-category="consulting">
+                    <div class="insight-meta">
+                        <span class="insight-category">IT Consulting</span>
+                        <span class="insight-date">Aug 2024</span>
+                    </div>
+                    <h2>Digital Transformation in Manufacturing</h2>
+                    <p>How manufacturers are leveraging technology to modernize operations and improve efficiency in the digital age.</p>
+                    <button class="btn btn--outline">Read More</button>
+                </article>
+                
+                <article class="insight-card" data-category="trends">
+                    <div class="insight-meta">
+                        <span class="insight-category">Technology Trends</span>
+                        <span class="insight-date">Aug 2024</span>
+                    </div>
+                    <h2>Veteran Leadership in Technology</h2>
+                    <p>Why veteran-led companies excel in delivering disciplined, mission-focused technology solutions to enterprise clients.</p>
+                    <button class="btn btn--outline">Read More</button>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Contact Page -->
+    <main id="contact" class="page">
+        <div class="container">
+            <h1 class="page-title">Contact Us</h1>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Get In Touch</h2>
+                    <p>Ready to find exceptional talent or explore career opportunities? Contact our team today.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <h3>📧 Email</h3>
+                            <p>info@elitevt-tech.com</p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>📞 Phone</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>🏢 Headquarters</h3>
+                            <p>123 Business Ave<br>Suite 100<br>New York, NY 10001</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h2>Send us a Message</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company" class="form-label">Company</label>
+                            <input type="text" id="company" name="company" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EliteVet Tech</h3>
+                    <p>Veteran-led excellence in IT staffing and consulting.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Technology Staffing</a></li>
+                        <li><a href="#services">Global Operations</a></li>
+                        <li><a href="#services">Consulting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Industries</h4>
+                    <ul>
+                        <li><a href="#industries">Utilities</a></li>
+                        <li><a href="#industries">Automobile</a></li>
+                        <li><a href="#industries">Manufacturing</a></li>
+                        <li><a href="#industries">Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" target="_blank">LinkedIn</a>
+                        <a href="#" target="_blank">Twitter</a>
+                        <a href="#" target="_blank">Facebook</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 EliteVet Tech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+      // EliteVet Tech Website JavaScript - Fixed Version
+
+class EliteVetTechApp {
+    constructor() {
+        this.currentPage = 'home';
+        this.init();
+    }
+
+    init() {
+        this.setupNavigation();
+        this.setupMobileMenu();
+        this.setupServiceTabs();
+        this.setupJobFilters();
+        this.setupInsightFilters();
+        this.setupContactForm();
+        this.setupScrollAnimations();
+        this.setupSmoothScrolling();
+        this.setupHeroInteractions();
+        this.setupButtonInteractions();
+    }
+
+    // Navigation Management - Fixed
+    setupNavigation() {
+        // Handle all navigation clicks
+        const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link, .footer-section a[href^="#"]');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const href = link.getAttribute('href');
+                if (!href || !href.startsWith('#')) return;
+                
+                const pageId = href.substring(1); // Remove the #
+                const tabData = link.getAttribute('data-tab');
+                
+                console.log('Navigating to:', pageId, 'with tab:', tabData);
+                
+                this.navigateToPage(pageId, tabData);
+                this.updateActiveNavLink(pageId);
+                this.closeMobileMenu();
+            });
+        });
+
+        // Handle dropdown menu clicks
+        document.querySelectorAll('.dropdown-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const href = link.getAttribute('href');
+                const pageId = href.substring(1);
+                const tabData = link.getAttribute('data-tab');
+                
+                console.log('Dropdown navigation to:', pageId, 'with tab:', tabData);
+                
+                this.navigateToPage(pageId, tabData);
+                this.updateActiveNavLink(pageId);
+                this.closeMobileMenu();
+            });
+        });
+
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', (e) => {
+            const pageId = e.state?.page || 'home';
+            this.navigateToPage(pageId, null, false);
+            this.updateActiveNavLink(pageId);
+        });
+
+        // Set initial state
+        window.history.replaceState({ page: 'home' }, '', '#home');
+    }
+
+    navigateToPage(pageId, tabData = null, updateHistory = true) {
+        console.log('Navigating to page:', pageId);
+        
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+            page.style.display = 'none';
+        });
+
+        // Show target page
+        const targetPage = document.getElementById(pageId);
+        if (targetPage) {
+            targetPage.classList.add('active');
+            targetPage.style.display = 'block';
+            this.currentPage = pageId;
+
+            // Handle service tab switching
+            if (pageId === 'services' && tabData) {
+                setTimeout(() => this.switchServiceTab(tabData), 100);
+            }
+
+            // Update browser history
+            if (updateHistory) {
+                window.history.pushState({ page: pageId }, '', `#${pageId}`);
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Trigger scroll animations
+            setTimeout(() => {
+                this.triggerScrollAnimations();
+            }, 200);
+
+            console.log('Successfully navigated to:', pageId);
+        } else {
+            console.error('Page not found:', pageId);
+        }
+    }
+
+    updateActiveNavLink(pageId) {
+        // Remove active class from all nav links
+        document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+
+        // Add active class to matching links
+        document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === `#${pageId}`) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Mobile Menu Management - Enhanced
+    setupMobileMenu() {
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggleMobileMenu();
+            });
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.navbar')) {
+                this.closeMobileMenu();
+            }
+        });
+    }
+
+    toggleMobileMenu() {
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        
+        if (mobileMenu && mobileMenuBtn) {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.style.display = 'block';
+                mobileMenuBtn.classList.add('active');
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.style.display = 'none';
+                mobileMenuBtn.classList.remove('active');
+            }
+            
+            this.animateHamburgerMenu(mobileMenuBtn, !isHidden);
+        }
+    }
+
+    closeMobileMenu() {
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        
+        if (mobileMenu && mobileMenuBtn) {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.style.display = 'none';
+            mobileMenuBtn.classList.remove('active');
+            this.animateHamburgerMenu(mobileMenuBtn, false);
+        }
+    }
+
+    animateHamburgerMenu(button, isActive) {
+        const spans = button.querySelectorAll('span');
+        spans.forEach((span, index) => {
+            if (isActive) {
+                if (index === 0) span.style.transform = 'rotate(45deg) translate(5px, 5px)';
+                if (index === 1) span.style.opacity = '0';
+                if (index === 2) span.style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                span.style.transform = '';
+                span.style.opacity = '';
+            }
+        });
+    }
+
+    // Service Tabs Management - Enhanced
+    setupServiceTabs() {
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const tabId = button.getAttribute('data-tab');
+                this.switchServiceTab(tabId);
+            });
+        });
+    }
+
+    switchServiceTab(tabId) {
+        console.log('Switching to tab:', tabId);
+        
+        // Update tab buttons
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        const activeTabBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+        if (activeTabBtn) {
+            activeTabBtn.classList.add('active');
+        }
+
+        // Update tab content
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.remove('active');
+            content.style.display = 'none';
+        });
+        
+        const activeTabContent = document.getElementById(`${tabId}-tab`);
+        if (activeTabContent) {
+            activeTabContent.classList.add('active');
+            activeTabContent.style.display = 'block';
+        }
+    }
+
+    // Job Filters Management - Enhanced
+    setupJobFilters() {
+        const locationFilter = document.getElementById('location-filter');
+        const technologyFilter = document.getElementById('technology-filter');
+        const typeFilter = document.getElementById('type-filter');
+
+        [locationFilter, technologyFilter, typeFilter].forEach(filter => {
+            if (filter) {
+                filter.addEventListener('change', () => {
+                    this.filterJobs();
+                });
+            }
+        });
+
+        // Setup apply buttons with enhanced functionality
+        document.querySelectorAll('.job-card .btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.handleJobApplication(btn);
+            });
+        });
+    }
+
+    filterJobs() {
+        const locationValue = document.getElementById('location-filter')?.value || '';
+        const technologyValue = document.getElementById('technology-filter')?.value || '';
+        const typeValue = document.getElementById('type-filter')?.value || '';
+
+        console.log('Filtering jobs:', { locationValue, technologyValue, typeValue });
+
+        const jobCards = document.querySelectorAll('.job-card');
+        let visibleCount = 0;
+        
+        jobCards.forEach(card => {
+            const cardLocation = card.getAttribute('data-location');
+            const cardTechnology = card.getAttribute('data-technology');
+            const cardType = card.getAttribute('data-type');
+
+            const matchesLocation = !locationValue || cardLocation === locationValue;
+            const matchesTechnology = !technologyValue || cardTechnology === technologyValue;
+            const matchesType = !typeValue || cardType === typeValue;
+
+            if (matchesLocation && matchesTechnology && matchesType) {
+                card.classList.remove('hidden');
+                card.style.display = 'flex';
+                visibleCount++;
+            } else {
+                card.classList.add('hidden');
+                card.style.display = 'none';
+            }
+        });
+
+        console.log(`${visibleCount} jobs visible after filtering`);
+    }
+
+    handleJobApplication(button) {
+        const originalText = button.textContent;
+        const originalBackground = button.style.background;
+        
+        // Add loading state
+        button.classList.add('loading');
+        button.textContent = 'Applying...';
+        button.disabled = true;
+        
+        // Simulate application process
+        setTimeout(() => {
+            button.classList.remove('loading');
+            button.textContent = 'Applied ✓';
+            button.style.background = 'var(--color-success)';
+            
+            // Show success notification
+            this.showNotification('Application submitted successfully!', 'success');
+            
+            // Reset button after delay
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = originalBackground;
+                button.disabled = false;
+            }, 3000);
+        }, 1500);
+    }
+
+    // Insight Filters Management - Enhanced
+    setupInsightFilters() {
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const category = button.getAttribute('data-category');
+                this.filterInsights(category);
+                
+                // Update active button
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+    }
+
+    filterInsights(category) {
+        console.log('Filtering insights by category:', category);
+        
+        const insightCards = document.querySelectorAll('.insight-card');
+        let visibleCount = 0;
+        
+        insightCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            
+            if (category === 'all' || cardCategory === category) {
+                card.classList.remove('hidden');
+                card.style.display = 'block';
+                visibleCount++;
+            } else {
+                card.classList.add('hidden');
+                card.style.display = 'none';
+            }
+        });
+
+        console.log(`${visibleCount} insights visible after filtering`);
+    }
+
+    // Contact Form Management - Enhanced
+    setupContactForm() {
+        const contactForm = document.getElementById('contactForm');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.handleContactFormSubmission(contactForm);
+            });
+        }
+    }
+
+    handleContactFormSubmission(form) {
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        const originalBackground = submitBtn.style.background;
+        
+        // Validate form
+        const formData = new FormData(form);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const message = formData.get('message');
+        
+        if (!name || !email || !message) {
+            this.showNotification('Please fill in all required fields.', 'error');
+            return;
+        }
+        
+        // Add loading state
+        submitBtn.classList.add('loading');
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Simulate form submission
+        setTimeout(() => {
+            submitBtn.classList.remove('loading');
+            submitBtn.textContent = 'Message Sent ✓';
+            submitBtn.style.background = 'var(--color-success)';
+            
+            // Show success notification
+            this.showNotification('Thank you! Your message has been sent successfully.', 'success');
+            
+            // Reset form
+            form.reset();
+            
+            // Reset button after delay
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = originalBackground;
+                submitBtn.disabled = false;
+            }, 3000);
+        }, 2000);
+    }
+
+    // Hero Section Interactions - Fixed
+    setupHeroInteractions() {
+        const heroButtons = document.querySelectorAll('.hero-buttons .btn');
+        
+        heroButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const buttonText = button.textContent.trim();
+                console.log('Hero button clicked:', buttonText);
+                
+                if (buttonText.includes('Get Started')) {
+                    this.navigateToPage('contact');
+                } else if (buttonText.includes('Learn More')) {
+                    this.navigateToPage('services');
+                }
+            });
+        });
+    }
+
+    // Enhanced Button Interactions
+    setupButtonInteractions() {
+        // Add enhanced interactions to all buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            // Skip if already has click handler
+            if (button.classList.contains('has-handler')) return;
+            
+            button.classList.add('has-handler');
+            
+            button.addEventListener('click', (e) => {
+                // Add ripple effect
+                this.createRippleEffect(button, e);
+            });
+        });
+
+        // Add CSS animation for ripple effect
+        this.addRippleStyles();
+    }
+
+    createRippleEffect(button, event) {
+        const ripple = document.createElement('span');
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = event.clientX - rect.left - size / 2;
+        const y = event.clientY - rect.top - size / 2;
+        
+        ripple.className = 'ripple-effect';
+        ripple.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: scale(0);
+            animation: ripple 0.6s ease-out;
+        `;
+        
+        if (getComputedStyle(button).position === 'static') {
+            button.style.position = 'relative';
+        }
+        button.style.overflow = 'hidden';
+        button.appendChild(ripple);
+        
+        setTimeout(() => {
+            if (ripple.parentNode) {
+                ripple.parentNode.removeChild(ripple);
+            }
+        }, 600);
+    }
+
+    addRippleStyles() {
+        if (!document.querySelector('#ripple-animation')) {
+            const style = document.createElement('style');
+            style.id = 'ripple-animation';
+            style.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(2);
+                        opacity: 0;
+                    }
+                }
+                .ripple-effect {
+                    animation: ripple 0.6s ease-out;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    // Scroll Animations - Enhanced
+    setupScrollAnimations() {
+        // Add animation classes to elements
+        const animatedElements = [
+            '.feature-card',
+            '.industry-card',
+            '.stat-card',
+            '.process-card',
+            '.location-card',
+            '.testimonial-card',
+            '.partner-card',
+            '.insight-card'
+        ];
+
+        animatedElements.forEach(selector => {
+            document.querySelectorAll(selector).forEach((el, index) => {
+                el.classList.add('fade-in');
+                el.style.transitionDelay = `${index * 100}ms`;
+            });
+        });
+
+        // Setup intersection observer
+        this.setupIntersectionObserver();
+    }
+
+    setupIntersectionObserver() {
+        if (!window.IntersectionObserver) {
+            // Fallback for older browsers
+            this.triggerScrollAnimations();
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+    }
+
+    triggerScrollAnimations() {
+        // Trigger animations for currently visible elements
+        const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+        animatedElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+            
+            if (isVisible) {
+                el.classList.add('visible');
+            }
+        });
+    }
+
+    // Smooth Scrolling
+    setupSmoothScrolling() {
+        // Add smooth scrolling behavior
+        document.documentElement.style.scrollBehavior = 'smooth';
+    }
+
+    // Utility Methods
+    showNotification(message, type = 'info') {
+        // Remove existing notifications
+        document.querySelectorAll('.notification').forEach(n => n.remove());
+        
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification notification--${type}`;
+        notification.textContent = message;
+        
+        const bgColor = type === 'success' ? 'var(--color-success)' : 
+                       type === 'error' ? 'var(--color-error)' : 'var(--color-info)';
+        
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            background: ${bgColor};
+            color: var(--color-btn-primary-text);
+            border-radius: var(--radius-base);
+            z-index: 10000;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all var(--duration-normal) var(--ease-standard);
+            box-shadow: var(--shadow-lg);
+        `;
+
+        document.body.appendChild(notification);
+
+        // Animate in
+        setTimeout(() => {
+            notification.style.opacity = '1';
+            notification.style.transform = 'translateX(0)';
+        }, 10);
+
+        // Remove after delay
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }, 4000);
+    }
+
+    // Performance optimizations
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        }
+    }
+}
+
+// Initialize the application when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, initializing EliteVet Tech app...');
+    
+    const app = new EliteVetTechApp();
+    
+    // Add scroll listener for navbar with throttling
+    window.addEventListener('scroll', app.throttle(() => {
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(252, 252, 249, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = 'var(--color-surface)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            }
+        }
+    }, 100));
+    
+    // Add resize listener for responsive adjustments
+    window.addEventListener('resize', app.debounce(() => {
+        app.closeMobileMenu();
+        app.triggerScrollAnimations();
+    }, 250));
+
+    // Handle keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            app.closeMobileMenu();
+        }
+    });
+
+    console.log('EliteVet Tech website initialized successfully!');
+});
+    </script>
