@@ -2509,25 +2509,29 @@ class EliteVetTechApp {
     }
 
     // Mobile Menu Management - Enhanced
-    setupMobileMenu() {
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const mobileMenu = document.querySelector('.mobile-menu');
+   setupMobileMenu() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
 
-        if (mobileMenuBtn) {
-            mobileMenuBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                this.toggleMobileMenu();
-            });
-        }
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.navbar')) {
-                this.closeMobileMenu();
-            }
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuBtn.classList.toggle('active');
         });
     }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.navbar')) {
+            mobileMenu.classList.add('hidden');
+            mobileMenuBtn.classList.remove('active');
+        }
+    });
+}
+
 
     toggleMobileMenu() {
         const mobileMenu = document.querySelector('.mobile-menu');
